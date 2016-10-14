@@ -1,6 +1,6 @@
 var appServices = angular.module('customerApp.services', []);
 
-appServices.factory('Movie', function($resource) {
+appServices.factory('Customer', function($resource) {
   //return $resource('http://movieapp-sitepointdemos.rhcloud.com/api/movies/:id',
   return $resource('https://r6am5z4kml.execute-api.us-east-1.amazonaws.com/prod/customers/:id', 
   {

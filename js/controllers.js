@@ -1,50 +1,50 @@
-angular.module('customerApp.controllers', []).controller('MovieListController', function($scope, $state, popupService, $window, Movie, Address) {
+angular.module('customerApp.controllers', []).controller('CustomerListController', function($scope, $state, popupService, $window, Customer, Address) {
 
-    $scope.movies = Movie.query();
+    $scope.customers = Customer.query();
 
-    $scope.deleteMovie = function(movie) {
+    $scope.deleteCustomer = function(customer) {
         if (popupService.showPopup('Really delete this?')) {
-            movie.$delete(function() {
+            customer.$delete(function() {
                 console.log("delete success");
                 $window.location.href = '';
             });
         }
     }
 
-}).controller('MovieViewController', function($scope, $stateParams, Movie) {
+}).controller('CustomerViewController', function($scope, $stateParams, Customer) {
 
-    $scope.customer = Movie.get({
+    $scope.customer = Customer.get({
         id: $stateParams.id
     });
 
-}).controller('MovieCreateController', function($scope, $state, $stateParams, Movie) {
+}).controller('CustomerCreateController', function($scope, $state, $stateParams, Customer) {
 
-    $scope.customer = new Movie();
+    $scope.customer = new Customer();
 
     $scope.addCustomer = function() {
-        Movie.create($scope.customer, function() {
-            $state.go('movies');
+        Customer.create($scope.customer, function() {
+            $state.go('customers');
         });
         // $scope.customer.$save(function() {
-        //     $state.go('movies');
+        //     $state.go('customers');
         // });
     }
 
-}).controller('MovieEditController', function($scope, $state, $stateParams, Movie) {
+}).controller('CustomerEditController', function($scope, $state, $stateParams, Customer) {
 
-    $scope.updateMovie = function() {
+    $scope.updateCustomer = function() {
         $scope.customer.$update(function() {
-            $state.go('movies');
+            $state.go('customers');
         });
     };
 
-    $scope.loadMovie = function() {
-        $scope.customer = Movie.get({
+    $scope.loadCustomer = function() {
+        $scope.customer = Customer.get({
             id: $stateParams.id
         });
     };
 
-    $scope.loadMovie();
+    $scope.loadCustomer();
 }).controller('AddressListController', function($scope, $state, popupService, $window, Address) {
 
     $scope.addresses = Address.query();
