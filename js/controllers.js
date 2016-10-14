@@ -5,6 +5,7 @@ angular.module('customerApp.controllers', []).controller('MovieListController', 
     $scope.deleteMovie = function(movie) {
         if (popupService.showPopup('Really delete this?')) {
             movie.$delete(function() {
+                console.log("delete success");
                 $window.location.href = '';
             });
         }
