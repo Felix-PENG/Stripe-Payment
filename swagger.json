@@ -1,0 +1,1023 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "2016-10-15T02:37:59Z",
+        "title": "gatewayLambda2"
+    },
+    "host": "r6am5z4kml.execute-api.us-east-1.amazonaws.com",
+    "basePath": "/prod",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/addresses": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerArray"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response"
+                    },
+                    "404": {
+                        "description": "404 response"
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$'))\n$input.json('$.body.Items')"
+                            }
+                        },
+                        "400.*": {
+                            "statusCode": "400"
+                        },
+                        "404.*": {
+                            "statusCode": "404"
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"httpMethod\" : \"$context.httpMethod\"\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandlerAddress/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response"
+                    },
+                    "401": {
+                        "description": "401 response"
+                    },
+                    "403": {
+                        "description": "403 response"
+                    },
+                    "404": {
+                        "description": "404 response"
+                    },
+                    "405": {
+                        "description": "405 response"
+                    },
+                    "422": {
+                        "description": "422 response"
+                    },
+                    "500": {
+                        "description": "500 response"
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "403.*": {
+                            "statusCode": "403"
+                        },
+                        "500.*": {
+                            "statusCode": "500"
+                        },
+                        "401.*": {
+                            "statusCode": "401"
+                        },
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        },
+                        "400.*": {
+                            "statusCode": "400"
+                        },
+                        "422.*": {
+                            "statusCode": "422"
+                        },
+                        "405.*": {
+                            "statusCode": "405"
+                        },
+                        "404.*": {
+                            "statusCode": "404"
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"httpMethod\" : \"$context.httpMethod\",\n    \"body\" : $input.json('$')\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandlerAddress/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "type": "mock"
+                }
+            }
+        },
+        "/addresses/{address-id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "address-id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response"
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$'))\n$input.json('$.body.Item')"
+                            }
+                        },
+                        ".*NotFound.*": {
+                            "statusCode": "404"
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"address_id\" : \"$input.params('address-id')\",\n    \"httpMethod\" : \"$context.httpMethod\"\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandlerAddress/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "address-id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response"
+                    },
+                    "401": {
+                        "description": "401 response"
+                    },
+                    "403": {
+                        "description": "403 response"
+                    },
+                    "404": {
+                        "description": "404 response"
+                    },
+                    "405": {
+                        "description": "405 response"
+                    },
+                    "500": {
+                        "description": "500 response"
+                    },
+                    "503": {
+                        "description": "503 response"
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "403.*": {
+                            "statusCode": "403"
+                        },
+                        "500.*": {
+                            "statusCode": "500"
+                        },
+                        "401.*": {
+                            "statusCode": "401"
+                        },
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        },
+                        "400.*": {
+                            "statusCode": "400"
+                        },
+                        "503.*": {
+                            "statusCode": "503"
+                        },
+                        "405.*": {
+                            "statusCode": "405"
+                        },
+                        "404.*": {
+                            "statusCode": "404"
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"httpMethod\" : \"$context.httpMethod\",\n    \"body\" : $input.json('$'),\n    \"address_id\" : \"$input.params('address-id')\"\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandlerAddress/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "address-id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"address_id\" : \"$input.params('address-id')\",\n    \"httpMethod\" : \"$context.httpMethod\"\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandlerAddress/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "address-id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,PUT,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "type": "mock"
+                }
+            }
+        },
+        "/customers": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerArray"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$'))\n$input.json('$.body.Items')"
+                            }
+                        },
+                        "404.*": {
+                            "statusCode": "404"
+                        },
+                        ".*400.*": {
+                            "statusCode": "400"
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"httpMethod\" : \"$context.httpMethod\"\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandler1/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "CustomerPost",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CustomerPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        },
+                        ".*(Validation|Address).*": {
+                            "statusCode": "400"
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"httpMethod\" : \"$context.httpMethod\",\n    \"body\" : $input.json('$')\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandler1/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'POST,GET,OPTIONS'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "type": "mock"
+                }
+            }
+        },
+        "/customers/{email}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "#set($inputRoot = $input.path('$'))\n{\n  \"lastname\" : $input.json('$.body.Item.lastname'),\n  \"firstname\" : $input.json('$.body.Item.firstname'),\n  \"email\" : $input.json('$.body.Item.email'),\n  \"address_ref\" : $input.json('$.body.Item.address_ref'),\n  \"phone_number\" : $input.json('$.body.Item.phone_number'),\n  \"address\" : {\n    \"href\" : $input.json('$.body.Item.address.href')\n  },\n  \"self\" : {\n    \"href\" : $input.json('$.body.Item.self.href')\n  }\n}"
+                            }
+                        },
+                        ".*NotFound.*": {
+                            "statusCode": "404"
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"email\" : \"$input.params('email')\",\n    \"httpMethod\" : \"$context.httpMethod\"\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandler1/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "CustomerPut",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CustomerPut"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Customer"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 response",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "404 response",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        },
+                        ".*400.*": {
+                            "statusCode": "400",
+                            "responseTemplates": {
+                                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage')))\n#set ($bodyObj = $util.parseJson($input.body))\n\n{\n    \"code\" : $errorMessageObj.statusCode,\n    \"message\" : \"$errorMessageObj.errorMessage\"\n}"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"httpMethod\" : \"$context.httpMethod\",\n    \"body\" : $input.json('$'),\n    \"email\" : \"$input.params('email')\"\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandler1/invocations",
+                    "passthroughBehavior": "when_no_match",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\n    \"email\" : \"$input.params('email')\",\n    \"httpMethod\" : \"$context.httpMethod\"\n}"
+                    },
+                    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:191552131886:function:MyLambdaHandler1/invocations",
+                    "passthroughBehavior": "when_no_templates",
+                    "httpMethod": "POST",
+                    "type": "aws"
+                }
+            },
+            "options": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                            "$ref": "#/definitions/Empty"
+                        },
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Methods": "'DELETE,GET,OPTIONS,PUT'",
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestTemplates": {
+                        "application/json": "{\"statusCode\": 200}"
+                    },
+                    "passthroughBehavior": "when_no_match",
+                    "type": "mock"
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Empty": {
+            "type": "object",
+            "title": "Empty Schema"
+        },
+        "Address": {
+            "type": "object",
+            "required": [
+                "address_id",
+                "city",
+                "street_number",
+                "zip_code"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "address_id": {
+                    "type": "string"
+                },
+                "street_number": {
+                    "type": "string"
+                },
+                "zip_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "Customer": {
+            "type": "object",
+            "required": [
+                "address",
+                "address_ref",
+                "email",
+                "firstname",
+                "lastname",
+                "phone_number",
+                "self"
+            ],
+            "properties": {
+                "lastname": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "address_ref": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "object",
+                    "properties": {
+                        "href": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "href"
+                    ]
+                },
+                "self": {
+                    "type": "object",
+                    "properties": {
+                        "href": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "href"
+                    ]
+                }
+            }
+        },
+        "CustomerPut": {
+            "type": "object",
+            "properties": {
+                "lastname": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "address_ref": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                }
+            }
+        },
+        "CustomerArray": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "lastname": {
+                        "type": "string"
+                    },
+                    "firstname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "address_ref": {
+                        "type": "string"
+                    },
+                    "phone_number": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "object",
+                        "properties": {
+                            "href": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "href"
+                        ]
+                    },
+                    "self": {
+                        "type": "object",
+                        "properties": {
+                            "href": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "href"
+                        ]
+                    }
+                },
+                "required": [
+                    "address",
+                    "address_ref",
+                    "email",
+                    "firstname",
+                    "lastname",
+                    "phone_number",
+                    "self"
+                ]
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "title": "Error Schema"
+        },
+        "CustomerPost": {
+            "type": "object",
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "lastname": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "address_ref": {
+                    "type": "string"
+                },
+                "phone_number": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
