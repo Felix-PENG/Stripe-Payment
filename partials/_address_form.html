@@ -1,6 +1,6 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script type="text/javascript" src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/3.2/jquery.liveaddress.min.js"></script>
-        <script>var liveaddress = jQuery.LiveAddress({
+<script type="text/javascript" src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/3.2/jquery.liveaddress.min.js"></script>
+<script>var liveaddress = jQuery.LiveAddress({
         key: "28919704895342104",
         debug: true,
         target: "US|INTERNATIONAL",
@@ -8,12 +8,12 @@
         addresses: [{
             address1: '#street',
             locality: '#city',
-            administrative_area: '#streetNumber',
+            administrative_area: '#state',
             postal_code: '#zipcode',
             country: '#country'
             }]
         });
-        </script>
+</script>
     <center>
         <h3>SmartyStreet Auto-complete </h3>
         <form>
@@ -25,13 +25,13 @@
             <input type="text" id="city" ng-model="address.city" name="city" placeholder="city">
             <br>
             <label>State: </label>
-            <input type="text" id="streetNumber" ng-model="address.street_number" name="streetNumber" placeholder="state">
+            <input type="text" id="state" ng-model="address.state" name="state" placeholder="state">
             <br>
             <label>Country: </label>
-            <input type="text" id="country" name="country" placeholder="country">
+            <input type="text" id="country" ng-model="address.country" name="country" placeholder="country">
             <br>
             <label>Zip Code: </label>
-            <input type="text" id="zipcode" ng-model="address.zip_code" name="ZIP" placeholder="ZIP">
+            <input type="text" id="zipcode" ng-model="address.zip_code" name="ZIP" placeholder="zip code">
             <br>
         </form>
     </center>
