@@ -29,6 +29,14 @@ app.post("/charge", (req, res) => {
   .then(charge => res.render("charge.pug"));
 });
 
+app.get("/paySuccess", function(req, res){
+
+});
+
+app.get("/updatePayment", function(req, res){
+
+});
+
 app.listen(4567);
 
 
