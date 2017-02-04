@@ -1,0 +1,43 @@
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/3.2/jquery.liveaddress.min.js"></script>
+<script>var liveaddress = jQuery.LiveAddress({
+        key: "28919704895342104",
+        debug: true,
+        target: "US|INTERNATIONAL",
+        autocomplete: 10,
+        addresses: [{
+            address1: '#street',
+            locality: '#city',
+            administrative_area: '#state',
+            postal_code: '#zipcode',
+            country: '#country'
+            }]
+        });
+</script>
+    <center>
+        <h3>SmartyStreet Auto-complete </h3>
+        <form>
+            <br>
+            <label>Street Address: </label>
+            <input type="text" id="street" ng-model="address.street" name="street" placeholder='Street Address'>
+            <br>
+            <label>City: </label>
+            <input type="text" id="city" ng-model="address.city" name="city" placeholder="city">
+            <br>
+            <label>State: </label>
+            <input type="text" id="state" ng-model="address.state" name="state" placeholder="state">
+            <br>
+            <label>Country: </label>
+            <input type="text" id="country" ng-model="address.country" name="country" placeholder="country">
+            <br>
+            <label>Zip Code: </label>
+            <input type="text" id="zipcode" ng-model="address.zip_code" name="ZIP" placeholder="zip code">
+            <br>
+        </form>
+    </center>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" class="btn btn-primary" value="Save"/>
+    </div>
+</div>
