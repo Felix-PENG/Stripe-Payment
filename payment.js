@@ -5,8 +5,12 @@ const keySecret = process.env.SECRET_KEY;
 const app = require("express")();
 const stripe = require("stripe")(keySecret);
 
+
+app.set("view engine", "html");
+app.use(require("body-parser").urlencoded({extended: false}));
+
 app.get("/", (req, res) =>
-  res.render("index.pug", {keyPublishable}));
+  res.render("index.html", {keyPublishable}));
 
 app.post("/charge", (req, res) => {
   let amount = 500;
