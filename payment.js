@@ -25,6 +25,14 @@ app.get("/charge", function(req, res){
 app.get("/list", function(req, res){
   res.sendFile(path.join(__dirname+'/templates/list.html'));
 });
+// =======
+
+// app.set("view engine", "html");
+// app.use(require("body-parser").urlencoded({extended: false}));
+
+// app.get("/", (req, res) =>
+//   res.render("index.html", {keyPublishable}));
+// >>>>>>> 59cd8462f9aa38e5953c797d47654b6729733980
 
 app.post("/charge", (req, res) => {
   let amount = 500;
@@ -41,6 +49,14 @@ app.post("/charge", (req, res) => {
          customer: customer.id
     }))
   .then(charge => res.render("charge.pug"));
+});
+
+app.get("/paySuccess", function(req, res){
+  res.sendFile(path.join(__dirname+'/templates/paySuccess.html'));
+});
+
+app.get("/updatePayment", function(req, res){
+
 });
 
 app.listen(4567);
