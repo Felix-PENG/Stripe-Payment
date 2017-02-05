@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>FeedPortal</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    <style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .transparent {
+        background: transparent;
+        border: 0px;
+    }
+
+    a{
+        cursor: pointer;
+    }
+    label{
+        font-weight: normal;
+    }
+    </style>
+</head>
+
+<body> 
+    <h3 id="type" style="margin:5% 5% 2%">Things you can buy</h3>
+    <div style="width:100%">
+            {% for news in newses%}
+            <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
+                <div style="width:200px;height:150px;display:inline-block;vertical-align:top">
+                    <img src="{{news['imgSrc']}}" style="width: 100%;height: 100%">
+                </div>
+                <div style="width:calc(85% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
+                    <p style="font-weight: bold;"><a class="newsTitle" sourceId="{{news['source_Id']}}" date="{{news['date']}}">{{news['title']}}</a></p>
+                    <label style="color: #CABBBB">Source: {{sourcesToNews[news['source_Id']]}}</label>
+					<label style="color: #CABBBB;margin-left:3%">Time: {{news['time']}}</label>
+                    <p>{{news['summary'][:150] + ' ......'}}</p>
+                    <p>
+                        <label>Topics:</label>
+						{% for i in news['entities'] %}
+                        <span class="label label-success" style="margin-left: 1%;max-width: 120px;text-overflow: ellipsis;overflow: hidden;display: inline-block;vertical-align: middle">{{i}}</span>
+                        {% endfor %}
+                    </p>
+                </div>
+                <div style="width:calc(10% - 200px);display: inline-block;margin-left:2%;margin-top:4%;vertical-align:top">
+                    <label style="color:#888;text-align: center;">Sentiment</label>
+                    <!-- negative: #e53935; neutral: #FFE57F; positive: #388E3C -->
+                    <p class="sentiment" style="width:70px;height:30px; 
+                    {% if news['senti'] >= -1 and news['senti'] < -0.75%}
+                        background-color: #e53935; color: white;
+                    {% elif news['senti'] >= -0.75 and news['senti'] < 0.25 %}
+                        background-color:#FFE57F; color: black;
+                    {% elif news['senti'] >= 0.25 and news['senti'] <= 1 %}
+                        background-color: #388E3C; color: white;
+                    {% endif %}
+                    text-align: center;line-height: 30px" data-container="body" data-toggle="popover" data-placement="bottom" data-content="-1.0(very negative) to 1.0(very positive)">{{news['senti']}}</p>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+    <script type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/feed.js"></script>
+</body>
+</html>

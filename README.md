@@ -1,2 +1,1 @@
-# CustomerProject
-Customer Project for Serverless
+# COMS 6998 As a service applications
