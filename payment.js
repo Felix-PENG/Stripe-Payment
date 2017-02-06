@@ -21,12 +21,32 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
   var email = req.body.email;
   var password = req.body.password;
+  /*
+  var connection = mysql.createConnection({
+    host     : 'http://modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
+    user     : 'ModernService',
+    password : 'ModernService',
+    port     : '3306'
+  });
+
+  var check = connection.query('SELECT * FROM customer WHERE email =' + email + ' AND password =' + password,function(err,rows){
+    if(err) throw err;
+
+    console.log('Data received from Db:\n');
+    console.log(rows);
+  });
+
+  connection.end();
+  connection.connect();
+  */
   if(true){ // TODO check if email and pw match
-    console.log("Login Success!")
+  // if(check){
+    console.log('Login Success!')
     res.redirect('/list');
   }
   else {
-    console.log("Login Fail!")
+    console.log('Login Fail!')
+    res.send(500,'Login Fail') 
     // warning without sending anything
   }
 });
@@ -41,7 +61,6 @@ app.post('/signup', function(req, res){
   var password = req.body.password;
   var verify = req.body.verify;
   if(password == verify){
-    console.log("Singup Success!")
     //update new user record
     /*
     var connection = mysql.createConnection({
@@ -52,18 +71,35 @@ app.post('/signup', function(req, res){
     });
 
     connection.connect();
-
-    connection.query("insert into customer('username', 'email','password') values (?, ?, ?)", [username, email, password], function (error, results, fields) {
-      if (error) throw error;
-      console.log("New user record has been pushed to database.");
+    
+    var check = connection.query('SELECT * FROM customer WHERE email =' + email + ' OR username =' + username,function(err,rows){
+      if(err) throw err;
+      console.log('check if name comflict');
     });
+
+    if(check){
+      console.log('Singup Fail!');
+      res.send(500,'Singup Fail!');
+    }
+    else {
+      connection.query("insert into customer('username', 'email','password') values (?, ?, ?)", [username, email, password], function (error, results, fields) {
+        if (error) throw error;
+        console.log("New user record has been pushed to database.");
+      });
+      console.log('Singup Success!');
+      res.redirect('/');
+    }
 
     connection.end();
     */
+
+    //These two need to be deleted after db finished.
+    console.log('Singup Success!');
     res.redirect('/');
   }
   else {
-    console.log("Singup Fail!")
+    console.log('Singup Fail!');
+    res.send(500,'Singup Fail!'); 
     // warning without sending anything
   }
 });
