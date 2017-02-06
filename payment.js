@@ -18,8 +18,54 @@ app.get('/', function(req, res){
   res.sendFile(path.join(__dirname+'/templates/login.html'));
 });
 
+app.post('/', function(req, res){
+  var email = req.body.email;
+  var password = req.body.password;
+  if(true){ // TODO check if email and pw match
+    console.log("Login Success!")
+    res.redirect('/list');
+  }
+  else {
+    console.log("Login Fail!")
+    // warning without sending anything
+  }
+});
+
 app.get('/signup', function(req, res){
   res.sendFile(path.join(__dirname+'/templates/signup.html'));
+});
+
+app.post('/signup', function(req, res){
+  var username = req.body.username;
+  var email = req.body.email;
+  var password = req.body.password;
+  var verify = req.body.verify;
+  if(password == verify){
+    console.log("Singup Success!")
+    //update new user record
+    /*
+    var connection = mysql.createConnection({
+      host     : 'http://modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
+      user     : 'ModernService',
+      password : 'ModernService',
+      port     : '3306'
+    });
+
+    connection.connect();
+
+    connection.query("insert into customer('username', 'email','password') values (?, ?, ?)", [username, email, password], function (error, results, fields) {
+      if (error) throw error;
+      console.log("New user record has been pushed to database.");
+    });
+
+    connection.end();
+    */
+    res.redirect('/');
+  }
+  else {
+    console.log("Singup Fail!")
+    // warning without sending anything
+  }
 });
 
 app.get('/charge', function(req, res){
