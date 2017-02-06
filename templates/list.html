@@ -8,12 +8,6 @@
         width: 100%;
         height: 100%;
     }
-    
-    .transparent {
-        background: transparent;
-        border: 0px;
-    }
-
     a{
         cursor: pointer;
     }
@@ -39,10 +33,12 @@
                         data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
                         data-amount="159900"
                         data-name="Demo Site"
-                        data-description="Widget"
+                        data-description="Macbook"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                         data-locale="auto">
                     </script>
+                    <input type="hidden" name="chargeAmount" value="159900">
+                    <input type="hidden" name="description" value="Macbook">
                 </form>
             </div>
         </div>
@@ -60,10 +56,12 @@
                         data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
                         data-amount="99900"
                         data-name="Demo Site"
-                        data-description="Widget"
+                        data-description="iPad"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                         data-locale="auto">
                     </script>
+                    <input type="hidden" name="chargeAmount" value="99900">
+                    <input type="hidden" name="description" value="iPad">
                 </form>
             </div>
         </div>
@@ -81,20 +79,17 @@
                         data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
                         data-amount="86900"
                         data-name="Demo Site"
-                        data-description="Widget"
+                        data-description="iPhone"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                         data-locale="auto">
                     </script>
+                    <input type="hidden" name="chargeAmount" value="86900">
+                    <input type="hidden" name="description" value="iPhone">
                 </form>
             </div>
-        </div>
-
-
-
-            
+        </div>        
     </div>
     <script type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/static/js/feed.js"></script>
 </body>
 </html>
