@@ -5,11 +5,11 @@ const keySecret = process.env.SECRET_KEY;
 var express = require("express");
 const stripe = require("stripe")(keySecret);
 var path    = require("path");
-var bodyParser = require("body-parser");
+//var bodyParser = require("body-parser");
 
 var app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({extended:false}));
 
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname+'/templates/login.html'));
@@ -47,15 +47,14 @@ app.post('/charge',function(req, res){
       console.log("Your card is rejected.");
     }
   });
+  console.log("Success!")
+  //update Payment records here
+
   res.redirect('/paySuccess');
 });
 
 app.get('/paySuccess', function(req, res){
   res.sendFile(path.join(__dirname+'/templates/paySuccess.html'));
-});
-
-app.get('/updatePayment', function(req, res){
-
 });
 
 app.listen(4567);

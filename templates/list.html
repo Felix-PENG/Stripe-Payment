@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>As a service</title>
+    <title>Apple Store</title>
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
     <style>
     html,
@@ -26,120 +26,72 @@
 <body> 
     <h3 id="type" style="margin:5% 5% 2%">Things you can buy</h3>
     <div style="width:100%">
-            <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
-                <div style="width:calc(85% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
-                    <p style="font-weight: bold;"><a class="newsTitle" sourceId="{{news['source_Id']}}" date="{{news['date']}}">Things1</a></p>
-                    <label style="color: #CABBBB">Description of things1</label>
-					<label style="color: #CABBBB;margin-left:3%">time</label>
-                    <p>description</p>
-                </div>
+        <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
+            <div style="width:200px;height:170px;display:inline-block;vertical-align:top">
+                <img src="/image/macbook.png" style="width: 100%;height: 100%">
             </div>
-            <form action="/your-server-side-code" method="POST">
-                <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
-                    data-amount="999"
-                    data-name="Demo Site"
-                    data-description="Widget"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto">
-                </script>
-            </form>
-            <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
-                <div style="width:calc(85% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
-                    <p style="font-weight: bold;"><a class="newsTitle" sourceId="{{news['source_Id']}}" date="{{news['date']}}">Things2</a></p>
-                    <label style="color: #CABBBB">Description of things1</label>
-                    <label style="color: #CABBBB;margin-left:3%">time</label>
-                    <p>description</p>
-                </div>
+            <div style="width:calc(90% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
+                <p style="font-weight: bold;">Macbook</a></p>
+                <label style="color: #CABBBB">512GB PCIe-based onboard flash storage / 1.2GHz dual-core / Intel Core m5 processor / Turbo Boost up to 2.7GHz / 8GB memory / Intel HD Graphics 515</label>
+                <form action="/charge" method="POST" style="margin-top: 2%">
+                    <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
+                        data-amount="159900"
+                        data-name="Demo Site"
+                        data-description="Widget"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto">
+                    </script>
+                </form>
             </div>
-            <form action="/your-server-side-code" method="POST">
-                <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
-                    data-amount="999"
-                    data-name="Demo Site"
-                    data-description="Widget"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto">
-                </script>
-            </form>
-            <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
-                <div style="width:calc(85% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
-                    <p style="font-weight: bold;"><a class="newsTitle" sourceId="{{news['source_Id']}}" date="{{news['date']}}">Things3</a></p>
-                    <label style="color: #CABBBB">Description of things1</label>
-                    <label style="color: #CABBBB;margin-left:3%">time</label>
-                    <p>description</p>
-                </div>
+        </div>
+
+        <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
+            <div style="width:200px;height:170px;display:inline-block;vertical-align:top">
+                <img src="/image/ipad.jpeg" style="width: 100%;height: 100%">
             </div>
-            <form action="/your-server-side-code" method="POST">
-                <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
-                    data-amount="999"
-                    data-name="Demo Site"
-                    data-description="Widget"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto">
-                </script>
-            </form>
-            <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
-                <div style="width:calc(85% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
-                    <p style="font-weight: bold;"><a class="newsTitle" sourceId="{{news['source_Id']}}" date="{{news['date']}}">Things4</a></p>
-                    <label style="color: #CABBBB">Description of things1</label>
-                    <label style="color: #CABBBB;margin-left:3%">time</label>
-                    <p>description</p>
-                </div>
+            <div style="width:calc(90% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
+                <p style="font-weight: bold;">iPad</a></p>
+                <label style="color: #CABBBB">12.9-inch (diagonal) LED-backlit Multi-Touch display ／ 2732-by-2048 resolution at 264 pixels per inch (ppi) ／ Fingerprint-resistant oleophobic coating ／ Fully laminated display ／ Antireflective coating</label>
+                <form action="/charge" method="POST" style="margin-top: 2%">
+                    <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
+                        data-amount="99900"
+                        data-name="Demo Site"
+                        data-description="Widget"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto">
+                    </script>
+                </form>
             </div>
-            <form action="/your-server-side-code" method="POST">
-                <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
-                    data-amount="999"
-                    data-name="Demo Site"
-                    data-description="Widget"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto">
-                </script>
-            </form>
-            <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
-                <div style="width:calc(85% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
-                    <p style="font-weight: bold;"><a class="newsTitle" sourceId="{{news['source_Id']}}" date="{{news['date']}}">Things5</a></p>
-                    <label style="color: #CABBBB">Description of things1</label>
-                    <label style="color: #CABBBB;margin-left:3%">time</label>
-                    <p>description</p>
-                </div>
+        </div>
+
+        <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
+            <div style="width:200px;height:170px;display:inline-block;vertical-align:top">
+                <img src="/image/iphone.png" style="width: 100%;height: 100%">
             </div>
-            <form action="/your-server-side-code" method="POST">
-                <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
-                    data-amount="999"
-                    data-name="Demo Site"
-                    data-description="Widget"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto">
-                </script>
-            </form>
-            <div style="border:1px solid #EFEFEF;margin: 1% 5%;">
-                <div style="width:calc(85% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
-                    <p style="font-weight: bold;"><a class="newsTitle" sourceId="{{news['source_Id']}}" date="{{news['date']}}">Things6</a></p>
-                    <label style="color: #CABBBB">Description of things1</label>
-                    <label style="color: #CABBBB;margin-left:3%">time</label>
-                    <p>description</p>
-                </div>
+            <div style="width:calc(90% - 200px);display:inline-block;margin-left: 2%;margin-top:1%">
+                <p style="font-weight: bold;">iPhone</a></p>
+                <label style="color: #CABBBB">6.63 ounces / Retina HD display / 12MP wide-angle and telephoto cameras / Fingerprint sensor built into the new Home button</label>
+                <form action="/charge" method="POST" style="margin-top: 2%">
+                    <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
+                        data-amount="86900"
+                        data-name="Demo Site"
+                        data-description="Widget"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto">
+                    </script>
+                </form>
             </div>
-            <form action="/your-server-side-code" method="POST">
-                <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_1zX2sGaxbQYs7Ke0IpcCan3V"
-                    data-amount="999"
-                    data-name="Demo Site"
-                    data-description="Widget"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto">
-                </script>
-            </form>
+        </div>
+
+
+
+            
     </div>
     <script type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
