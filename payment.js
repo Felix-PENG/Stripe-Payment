@@ -46,7 +46,8 @@ app.post('/', function(req, res){
   }
   else {
     console.log('Login Fail!')
-    res.send(500,'Login Fail') 
+    res.sendFile(path.join(__dirname+'/templates/loginFail.html'));
+    // res.send(500,'Login Fail') 
     // warning without sending anything
   }
 });
@@ -99,7 +100,8 @@ app.post('/signup', function(req, res){
   }
   else {
     console.log('Singup Fail!');
-    res.send(500,'Singup Fail!'); 
+    res.sendFile(path.join(__dirname+'/templates/signUpFail.html'));
+    // res.send(500,'Singup Fail!'); 
     // warning without sending anything
   }
 });
