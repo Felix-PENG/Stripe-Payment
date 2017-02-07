@@ -138,16 +138,19 @@ app.post('/charge',function(req, res){
 
       //update Payment records here
       var connection = mysql.createConnection({
-        host     : 'http://modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
+        host     : 'modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
         user     : 'ModernService',
         password : 'ModernService',
-        port     : '3306'
+        port     : '3306',
+        database : 'ModernService'
       });
 
       connection.connect();
 
-      connection.query("insert into payments('Description', 'Created','Amount','Currency') values (?, ?, ? ,'USD')", [description, new Date(),chargeAmount], function (error, results, fields) {
-        if (error) throw error;
+      connection.query('INSERT INTO payments SET ?', {'description': description, 'created': new Date(), 'amount': chargeAmount, 'currency': 'USD'}, function (error, results, fields) {
+        if (error){
+          console.log(error);
+        }
         console.log("Payment record has been pushed to database.");
       });
 
