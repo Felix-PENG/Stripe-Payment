@@ -21,35 +21,36 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
   var email = req.body.email;
   var password = req.body.password;
-  /*
   var connection = mysql.createConnection({
-    host     : 'http://modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
+    host     : 'modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
     user     : 'ModernService',
     password : 'ModernService',
-    port     : '3306'
+    port     : '3306',
+    database : 'ModernService'
   });
 
-  var check = connection.query('SELECT * FROM customer WHERE email =' + email + ' AND password =' + password,function(err,rows){
-    if(err) throw err;
-
-    console.log('Data received from Db:\n');
-    console.log(rows);
-  });
-
-  connection.end();
   connection.connect();
-  */
-  if(true){ // TODO check if email and pw match
-  // if(check){
-    console.log('Login Success!')
-    res.redirect('/list');
-  }
-  else {
-    console.log('Login Fail!')
-    res.sendFile(path.join(__dirname+'/templates/loginFail.html'));
-    // res.send(500,'Login Fail') 
-    // warning without sending anything
-  }
+
+  var checkIn = 0;
+  connection.query('SELECT * FROM customer WHERE email = ? AND password = ?', [email, password], function (error, results, fields){
+    if(error) {
+      console.log(error);
+    }
+    for (var i in results) {
+      checkIn = checkIn + 1;
+    }
+    if(checkIn == 0){
+      connection.end();
+      checkIn = 0;
+      console.log('Login Fail!')
+      res.sendFile(path.join(__dirname+'/templates/loginFail.html'));
+    }
+    else {
+      connection.end();
+      console.log('Login Success!')
+      res.redirect('/list');
+    }
+  });
 });
 
 app.get('/signup', function(req, res){
@@ -63,46 +64,49 @@ app.post('/signup', function(req, res){
   var verify = req.body.verify;
   if(password == verify){
     //update new user record
-    /*
     var connection = mysql.createConnection({
-      host     : 'http://modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
+      host     : 'modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
       user     : 'ModernService',
       password : 'ModernService',
-      port     : '3306'
+      port     : '3306',
+      database : 'ModernService'
     });
 
     connection.connect();
-    
-    var check = connection.query('SELECT * FROM customer WHERE email =' + email + ' OR username =' + username,function(err,rows){
-      if(err) throw err;
-      console.log('check if name comflict');
+
+    var check = 0;
+    connection.query('SELECT * FROM customer WHERE email = ? OR username = ?', [email, username], function (error, results, fields){
+      if(error) {
+        console.log(error);
+      }
+      for (var i in results) {
+        check = check + 1;
+      }
+      if(check == 0){
+      
+      connection.query('INSERT INTO customer SET ?', {'username': username, 'email': email, 'password': password}, function (error, results, fields) {
+        if (error){
+          console.log(error);
+        }
+        else {
+          console.log("Singup Success!");
+        }
+        connection.end();
+      });
+      res.redirect('/');
+      }
+      else {
+        connection.end();
+        check = 0;
+        console.log('Singup Fail!!');
+        res.sendFile(path.join(__dirname+'/templates/signUpFail.html'));
+      }
     });
 
-    if(check){
-      console.log('Singup Fail!');
-      res.send(500,'Singup Fail!');
-    }
-    else {
-      connection.query("insert into customer('username', 'email','password') values (?, ?, ?)", [username, email, password], function (error, results, fields) {
-        if (error) throw error;
-        console.log("New user record has been pushed to database.");
-      });
-      console.log('Singup Success!');
-      res.redirect('/');
-    }
-
-    connection.end();
-    */
-
-    //These two need to be deleted after db finished.
-    console.log('Singup Success!');
-    res.redirect('/');
   }
   else {
     console.log('Singup Fail!');
     res.sendFile(path.join(__dirname+'/templates/signUpFail.html'));
-    // res.send(500,'Singup Fail!'); 
-    // warning without sending anything
   }
 });
 
