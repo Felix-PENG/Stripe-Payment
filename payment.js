@@ -130,6 +130,7 @@ app.post('/charge',function(req, res){
   var token = req.body.stripeToken;
   var chargeAmount = req.body.chargeAmount;
   var description = req.body.description;
+  var user_id = "";
   var charge = stripe.charges.create({
     amount: chargeAmount,
     currency: "usd",
@@ -153,7 +154,7 @@ app.post('/charge',function(req, res){
 
       connection.connect();
 
-      connection.query('INSERT INTO payments SET ?', {'description': description, 'created': new Date(), 'amount': chargeAmount, 'currency': 'USD'}, function (error, results, fields) {
+      connection.query('INSERT INTO payments SET ?', {'user_id': user_id, 'description': description, 'created': new Date(), 'amount': chargeAmount, 'currency': 'USD'}, function (error, results, fields) {
         if (error){
           console.log(error);
         }
@@ -169,6 +170,29 @@ app.post('/charge',function(req, res){
 
 app.get('/paySuccess', function(req, res){
   res.sendFile(path.join(__dirname+'/templates/paySuccess.html'));
+});
+
+app.get('/payHistory', function(req, res){
+  var user_id = "";
+  var connection = mysql.createConnection({
+        host     : 'modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
+        user     : 'ModernService',
+        password : 'ModernService',
+        port     : '3306',
+        database : 'ModernService'
+      });
+
+    connection.connect();
+
+    connection.query('SELECT * FROM payments WHERE user_id = ?', [user_id], function (error, results, fields) {
+      if (error){
+        console.log(error);
+      }
+      
+    });
+
+  connection.end();
+  res.sendFile(path.join(__dirname+'/templates/payHistory.html'));
 });
 
 app.listen(4567);
