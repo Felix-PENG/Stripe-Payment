@@ -9,3 +9,7 @@
 - Jihao Zhang()
 - Wanru Li(wl2573)
 - Tiantian Yin(ty2346)
+
+## Technology
+- Back-end: nodejs + express
+- Database: Amazon RDS
