@@ -1,7 +1,7 @@
 # COMS 6998 As a service applications
 
 ## Team name:
--DayDayUp
+- DayDayUp
 
 ## Team member:
 - Zhekai Xing(zx2198)
