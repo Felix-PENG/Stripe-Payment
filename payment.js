@@ -171,6 +171,8 @@ app.get('/paySuccess', function(req, res){
   res.sendFile(path.join(__dirname+'/templates/paySuccess.html'));
 });
 
+app.set('view engine', 'pug')
+
 app.get('/payHistory', function(req, res){
   var cookies = cookie.parse(req.headers.cookie || '');
   var user_id = jwt.verify(cookies.userToken, 'shhhhh');
@@ -184,16 +186,19 @@ app.get('/payHistory', function(req, res){
       });
 
     connection.connect();
-
+    // var Items = [];
     connection.query('SELECT * FROM payments WHERE user_id = ?', [user_id], function (error, results, fields) {
+      // Items = results;
       console.log(results);
+      console.log(results[0]);
+      res.render(path.join(__dirname+'/templates/payHistory.pug'), {Items: results});
       if (error){
         console.log(error);
       }
     });
 
   connection.end();
-  res.sendFile(path.join(__dirname+'/templates/payHistory.html'));
+  // console.log(Items);
 });
 
 app.listen(4567);
