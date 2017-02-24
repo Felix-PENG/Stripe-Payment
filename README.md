@@ -11,6 +11,6 @@
 - Tiantian Yin(ty2346)
 
 ## Technology
-- Back-end: nodejs + express
-- Database: Amazon RDS
+- Back-end: nodejs + express.js
+- Database: Amazon RDS/MySQL
 - Front-end: Bootstrap
