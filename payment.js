@@ -8,6 +8,9 @@ var stripe = require('stripe')(keySecret);
 var path    = require('path');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var jwt = require('jsonwebtoken');
+var cookie = require('cookie')
+var cookieParser = require('cookie-parser')
 
 var app = express();
 app.use(bodyParser.json());
@@ -47,6 +50,8 @@ app.post('/', function(req, res){
     }
     else {
       connection.end();
+      var token = jwt.sign(email, 'shhhhh');
+      res.cookie('userToken', token)
       console.log('Login Success!')
       res.redirect('/list');
     }
@@ -117,20 +122,14 @@ app.get('/charge', function(req, res){
 app.get('/list', function(req, res){
   res.sendFile(path.join(__dirname+'/templates/list.html'));
 });
-// =======
-
-// app.set("view engine", "html");
-// app.use(require("body-parser").urlencoded({extended: false}));
-
-// app.get("/", (req, res) =>
-//   res.render("index.html", {keyPublishable}));
-// >>>>>>> 59cd8462f9aa38e5953c797d47654b6729733980
 
 app.post('/charge',function(req, res){
   var token = req.body.stripeToken;
   var chargeAmount = req.body.chargeAmount;
   var description = req.body.description;
-  var user_id = "";
+  var cookies = cookie.parse(req.headers.cookie || '');
+  var user_id = jwt.verify(cookies.userToken, 'shhhhh');
+
   var charge = stripe.charges.create({
     amount: chargeAmount,
     currency: "usd",
@@ -173,7 +172,9 @@ app.get('/paySuccess', function(req, res){
 });
 
 app.get('/payHistory', function(req, res){
-  var user_id = "";
+  var cookies = cookie.parse(req.headers.cookie || '');
+  var user_id = jwt.verify(cookies.userToken, 'shhhhh');
+
   var connection = mysql.createConnection({
         host     : 'modernservice.c4mnz6jezil1.us-east-1.rds.amazonaws.com',
         user     : 'ModernService',
@@ -185,10 +186,10 @@ app.get('/payHistory', function(req, res){
     connection.connect();
 
     connection.query('SELECT * FROM payments WHERE user_id = ?', [user_id], function (error, results, fields) {
+      console.log(results);
       if (error){
         console.log(error);
       }
-      
     });
 
   connection.end();
